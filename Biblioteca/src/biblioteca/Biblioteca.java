@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import entrada.Entrada;
+import libro.Ejemplar;
 import libro.Libro;
 import socio.Socio;
 
@@ -27,11 +28,11 @@ public class Biblioteca {
 		return socios;
 	}
 	
-	public void lendBook(Socio socio, Libro libro) {
+	public void lendBook(Socio socio, Ejemplar libro) {
 		
 		if(socios.contains(socio) && libros.contains(libro)) {
 			libro.lend(socio);
-			
+			socio.lend(libro);
 		} else if(!socios.contains(socio)) {
 			Entrada.Mensaje("Para pedir prestado un libro necesitas estar registrado");
 			createAccount();
@@ -53,6 +54,17 @@ public class Biblioteca {
 		Entrada.Mensaje("Introduce tu DNI");
 		DNI = Entrada.pedirString();
 		socios.add(new Socio(nombre , apellidos, DNI));
+		
+	}
+	
+	private void registerBook() {
+		String titulo;
+		String autor;
+		String ISBN;
+		
+		
+		libros.add(new Ejemplar(titulo, autor, ISBN));
+		
 		
 	}
 	
