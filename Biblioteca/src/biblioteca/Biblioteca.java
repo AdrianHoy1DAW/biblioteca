@@ -28,21 +28,38 @@ public class Biblioteca {
 		return socios;
 	}
 	
-	public void lendBook(Socio socio, Ejemplar libro) {
+	public void lendBook(Socio socio, Libro libro) {
 		
 		if(socios.contains(socio) && libros.contains(libro)) {
-			libro.lend(socio);
-			socio.lend(libro);
+			if(libro.hayEjemplares() == true) {
+				if(libro.prestarEjemplar() != null) {
+					Ejemplar e = libro.prestarEjemplar();
+					socio.lend(e);
+					e.lend(socio);
+				} else {
+					Entrada.Mensaje("No hay ejemplares disponibles en este momento");
+				}
+			} else {
+				Entrada.Mensaje("No disponemos de ejemplares de ese libro en ese momento");
+			}
 		} else if(!socios.contains(socio)) {
 			Entrada.Mensaje("Para pedir prestado un libro necesitas estar registrado");
-			createAccount();
 		} else {
 			Entrada.Mensaje("No disponimos de ese libro");
 		}
 		
 	}
+	
+	public void giveBackBook(Socio socio, Ejemplar libro) {
+		
+		if(socio.giveBack(libro) == true) {
+			libro.giveBack();
+		}
+		
+		
+	}
 
-	private void createAccount() {
+	public void createAccount() {
 		String nombre ;
 		String apellidos;
 		String DNI;
@@ -57,15 +74,44 @@ public class Biblioteca {
 		
 	}
 	
-	private void registerBook() {
+	public void logIn(Socio socio) {
+		
+		socios.add(socio);
+		
+	}
+	
+	public void addBook(Libro libro) {
+		libros.add(libro);
+	}
+	
+	public void registerBook() {
 		String titulo;
 		String autor;
 		String ISBN;
 		
+		Entrada.Mensaje("Introduce el título del libro");
+		titulo = Entrada.pedirString();
+		Entrada.Mensaje("Introduce el autor del libro");
+		autor = Entrada.pedirString();
+		Entrada.Mensaje("Introduce el ISBN");
+		ISBN = Entrada.pedirString();
+		libros.add(new Libro(titulo, autor, ISBN));
+	}
+	
+	public void reciveEjemplares(int cantidad, Libro libro) {
 		
-		libros.add(new Ejemplar(titulo, autor, ISBN));
-		
+		if(libros.contains(libro)) {
+			libro.añadirEjemplares(cantidad);
+		}
 		
 	}
+	
+
+	@Override
+	public String toString() {
+		return "Biblioteca [libros=" + libros + "\n" + ", socios=" + socios + "]";
+	}
+	
+	
 	
 }

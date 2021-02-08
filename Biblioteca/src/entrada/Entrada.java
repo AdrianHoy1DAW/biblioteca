@@ -10,6 +10,13 @@ public class Entrada {
 
 	}
 
+	public static int pedirInt() {
+		int pedido = 0;
+		Scanner sc = new Scanner(System.in);
+		
+		pedido = sc.nextInt();
+		return pedido;
+	}
 	
 	public static String pedirString() {
 		String pedido = "";
