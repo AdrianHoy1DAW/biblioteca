@@ -88,7 +88,7 @@ public class Libro implements Comparable<Libro>{
 		
 		for(int i = 0; i< cantidad; i++) {
 			
-			ejemplares.add(new Ejemplar());
+			ejemplares.add(new Ejemplar(ejemplares.size() +1 ,this));
 			
 		}
 		
@@ -108,6 +108,12 @@ public class Libro implements Comparable<Libro>{
 		return ISBN;
 	}
 	
+	
+	
+	public ArrayList<Ejemplar> getEjemplares() {
+		return ejemplares;
+	}
+
 	@Override
 	public int hashCode() {
 		return Integer.parseInt(ISBN);

@@ -9,14 +9,16 @@ public class Ejemplar {
 
 	private int codigo;
 	private Socio poseedor;
+	private Libro l;
 	
 	
 	
-	public Ejemplar() {
+	public Ejemplar(int codigo, Libro l) {
 		
 		
-		codigo = 1;
+		this.codigo = codigo;
 		this.poseedor = null;
+		this.l = l;
 	
 	}
 	

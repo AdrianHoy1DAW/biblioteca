@@ -15,29 +15,27 @@ public class Test {
 		
 		Biblioteca b = new Biblioteca();
 		Socio socio = new Socio("Adrian","Hoyos","1");
-		Socio socio1 = new Socio("Rodriog","Hoyos","1");
-		Socio socio2 = new Socio("Zamorano","Hoyos","1");
-		Socio socio3 = new Socio("Judith","Hoyos","1");
-		
-		
 		Libro libro = new Libro("Hola","Hola","2");
 		Libro libro1 = new Libro("Adios","Manolo","2");
 		Libro libro2 = new Libro("Mellizos","Juan","2");
 		Libro libro3 = new Libro("Surima","Carlos","2");
 		Libro libro4 = new Libro("Thiago","Hoyos","2");
 		Set<Libro> libros = b.getLibros();
-		Set<Socio> socios = b.getSocios();
 		
+		libro4.añadirEjemplares(5);
+		libro.añadirEjemplares(3);
+		libro2.añadirEjemplares(2);
+		libro3.añadirEjemplares(4);
+		
+		libros= new	TreeSet<Libro>(libro.COMPARE_BY_EJEMPLARES);
+		libros.add(libro);
+		libros.add(libro1);
+		libros.add(libro2);
+		libros.add(libro3);
+		libros.add(libro4);
 
 		
-		socios= new	TreeSet<Socio>();
-		socios.add(socio);
-		socios.add(socio1);
-		socios.add(socio2);
-		socios.add(socio3);
-		
-		
-		System.out.println(socios);
+		System.out.println(libros);
 		
 		
 		
