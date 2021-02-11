@@ -4,19 +4,46 @@ package libro;
 
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import biblioteca.Biblioteca;
 import entrada.Entrada;
 import socio.Socio;
 
 
-public class Libro {
+public class Libro implements Comparable<Libro>{
 
 
 	protected String titulo;
 	protected String autor;
 	protected String ISBN;
 	private ArrayList<Ejemplar> ejemplares = new ArrayList<Ejemplar>();
+	
+	
+	public static final Comparator COMPARE_BY_EJEMPLARES = new Comparator<Libro>() {
+		
+		@Override
+		public int compare(Libro s0, Libro s1) {
+			
+			return s1.ejemplares.size() - s0.ejemplares.size();
+			
+		}
+		
+	};
+	
+	public static final Comparator COMPARE_BY_AUTOR = new Comparator<Libro>() {
+		
+		@Override
+		public int compare(Libro s0, Libro s1) {
+			
+			return s0.autor.compareTo(s1.autor);
+			
+		}
+		
+	};
+	
+	
+	
 	
 	
 	public Libro(String titulo, String autor, String ISBN) {
@@ -80,11 +107,25 @@ public class Libro {
 	public String getISBN() {
 		return ISBN;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Integer.parseInt(ISBN);
+	}
+	
+	@Override
+	public int compareTo(Libro l) {
+		
+		return titulo.compareTo(l.titulo);
+		
+	}
 
 	@Override
 	public String toString() {
 		return "Libro [titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", ejemplares=" + ejemplares + "]";
 	}
+
+
 	
 	
 	

@@ -18,6 +18,7 @@ public class Biblioteca {
 		libros = new LinkedHashSet<Libro>();
 		socios = new LinkedHashSet<Socio>();
 		
+		
 	}
 
 	public Set<Libro> getLibros() {
@@ -50,12 +51,9 @@ public class Biblioteca {
 		
 	}
 	
-	public void giveBackBook(Socio socio, Ejemplar libro) {
+	public void giveBackBook(Socio socio) {
 		
-		if(socio.giveBack(libro) == true) {
-			libro.giveBack();
-		}
-		
+		socio.giveBack();
 		
 	}
 

@@ -1,6 +1,7 @@
 package socio;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -8,13 +9,24 @@ import entrada.Entrada;
 import libro.Ejemplar;
 
 
-public class Socio {
+public class Socio implements Comparable<Socio>{
 
 	private String nombre;
 	private String apellidos;
 	private String DNI;
 	private ArrayList<Ejemplar> prestados;
 	private static int cantidadMaxima = 3;
+	
+	public static final Comparator COMPARE_BY_PRESTADOS = new Comparator<Socio>() {
+		
+		@Override
+		public int compare(Socio s0, Socio s1) {
+			
+			return s0.prestados.size() - s1.prestados.size();
+			
+		}
+		
+	};
 	
 	public Socio(String nombre, String apellidos, String DNI) {
 		
@@ -35,12 +47,37 @@ public class Socio {
 		
 	}
 	
-	public boolean giveBack() {
-		int numero = Entrada.pedirInt();	
-		Entrada.Mensaje("Que libro quieres devolver: " + prestados);
-		prestados.get(numero);
+	public void giveBack() {
+		if(prestados.isEmpty()) {
+			Entrada.Mensaje("No tienes libros prestados");	
+		} else {
+			Entrada.Mensaje("Que libro quieres devolver: " + prestados);
+			int numero = Entrada.pedirInt();
+			if(numero > prestados.size()) {
+				Entrada.Mensaje("No tienes tantos libros");
+				
+			} else {
+				prestados.get(numero -1).giveBack();
+				prestados.remove(numero -1);
+				
+			}
+
+			
+		}
+
 		
+	}
+	
+	@Override
+	public int hashCode() {
 		
+		return DNI.compareTo(nombre);
+		
+	}
+	
+	@Override
+	public int compareTo(Socio p) {
+		return nombre.compareTo(p.nombre);
 	}
 
 	@Override
