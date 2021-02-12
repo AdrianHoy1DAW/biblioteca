@@ -68,13 +68,25 @@ public class Socio implements Comparable<Socio>{
 		
 	}
 	
-	@Override
-	public int hashCode() {
-		
-		return DNI.compareTo(nombre);
-		
-	}
+
 	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public String getDNI() {
+		return DNI;
+	}
+
+	public ArrayList<Ejemplar> getPrestados() {
+		return prestados;
+	}
+
 	@Override
 	public int compareTo(Socio p) {
 		return nombre.compareTo(p.nombre);
@@ -83,7 +95,7 @@ public class Socio implements Comparable<Socio>{
 	@Override
 	public String toString() {
 		return "Socio [nombre=" + nombre + ", apellidos=" + apellidos + ", DNI=" + DNI  + 
-				"]";
+				"] \n";
 	}
 	
 	

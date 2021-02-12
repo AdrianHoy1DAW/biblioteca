@@ -1,5 +1,6 @@
 package test;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -20,22 +21,16 @@ public class Test {
 		Libro libro2 = new Libro("Mellizos","Juan","2");
 		Libro libro3 = new Libro("Surima","Carlos","2");
 		Libro libro4 = new Libro("Thiago","Hoyos","2");
-		Set<Libro> libros = b.getLibros();
+		ArrayList<Libro> libros = b.getLibros();
 		
-		libro4.añadirEjemplares(5);
-		libro.añadirEjemplares(3);
-		libro2.añadirEjemplares(2);
-		libro3.añadirEjemplares(4);
+		b.registerBook();
+		b.registerBook();
 		
-		libros= new	TreeSet<Libro>(libro.COMPARE_BY_EJEMPLARES);
-		libros.add(libro);
-		libros.add(libro1);
-		libros.add(libro2);
-		libros.add(libro3);
-		libros.add(libro4);
 
 		
-		System.out.println(libros);
+		
+		
+		System.out.println(b);
 		
 		
 		

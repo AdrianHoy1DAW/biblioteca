@@ -9,6 +9,23 @@ public class Entrada {
 		
 
 	}
+	
+	public static int Menu() {
+		Entrada.Mensaje("Qué quieres hacer");
+		
+		
+		Entrada.Mensaje("1. Registrar un libro");
+		Entrada.Mensaje("2. Registrar un socio");
+		Entrada.Mensaje("3. Alquilar un libro");
+		Entrada.Mensaje("4. Devolver un libro");
+		Entrada.Mensaje("5. Recibir ejemplares");
+		Entrada.Mensaje("6. Salir de la aplicación");
+		
+		int eleccion = pedirInt();
+		return eleccion;
+		
+		
+	}
 
 	public static int pedirInt() {
 		int pedido = 0;

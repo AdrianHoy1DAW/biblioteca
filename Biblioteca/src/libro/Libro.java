@@ -11,7 +11,7 @@ import entrada.Entrada;
 import socio.Socio;
 
 
-public class Libro implements Comparable<Libro>{
+public class Libro implements Comparable<Libro> {
 
 
 	protected String titulo;
@@ -42,6 +42,16 @@ public class Libro implements Comparable<Libro>{
 		
 	};
 	
+	public static final Comparator COMPARE_BY_TITULO = new Comparator<Libro>() {
+		
+
+		@Override
+		public int compare(Libro l0, Libro l1) {
+			
+			return l0.titulo.compareTo(l1.titulo);
+		}
+		
+	};
 	
 	
 	
@@ -114,31 +124,32 @@ public class Libro implements Comparable<Libro>{
 		return ejemplares;
 	}
 
-	@Override
-	public int hashCode() {
-		return Integer.parseInt(ISBN);
-	}
+
 	
-	@Override
-	public int compareTo(Libro l) {
-		
-		return titulo.compareTo(l.titulo);
-		
-	}
+
+
 
 	@Override
 	public String toString() {
-		return "Libro [titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", ejemplares=" + ejemplares + "]";
+		return "Libro [titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", ejemplares=" + ejemplares + "] \n";
 	}
 
+	@Override
+	public int compareTo(Libro l) {
+		
+		return ISBN.compareTo(l.ISBN);
+	}
 
-	
-	
-	
-	
-
-
-	
-
-	
 }
+
+
+	
+	
+	
+	
+
+
+	
+
+	
+
