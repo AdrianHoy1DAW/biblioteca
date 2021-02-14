@@ -6,16 +6,15 @@ import guardado.Guardado;
 
 public class ControladorBiblioteca {
 
-	Biblioteca b = new Biblioteca();
+	Biblioteca b;
 	Guardado g = new Guardado();
 	
 	public ControladorBiblioteca() {
 	
-		try {
-			b = g.load();
-		} catch(Exception e) {
-			Entrada.Mensaje("No hay ninguna biblioteca guardada");
-		}
+	
+		b = g.load();
+		
+	
 		
 		
 	}
