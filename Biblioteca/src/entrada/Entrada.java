@@ -18,8 +18,11 @@ public class Entrada {
 		Entrada.Mensaje("2. Registrar un socio");
 		Entrada.Mensaje("3. Alquilar un libro");
 		Entrada.Mensaje("4. Devolver un libro");
-		Entrada.Mensaje("5. Recibir ejemplares");
-		Entrada.Mensaje("6. Salir de la aplicación");
+		Entrada.Mensaje("5 Enseñar los libros");
+		Entrada.Mensaje("6. Mostrar los socios");
+		Entrada.Mensaje("7. Recibir ejemplares");
+		Entrada.Mensaje("8. Guardar los cambios");
+		Entrada.Mensaje("9. Salir de la aplicación");
 		
 		int eleccion = pedirInt();
 		return eleccion;
