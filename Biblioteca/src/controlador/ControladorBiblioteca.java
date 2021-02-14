@@ -11,13 +11,20 @@ public class ControladorBiblioteca {
 	
 	public ControladorBiblioteca() {
 	
+		try {
+			b = g.load();
+		} catch(Exception e) {
+			Entrada.Mensaje("No hay ninguna biblioteca guardada");
+		}
+		
 		
 	}
 	
 	
 	public  void go() {
 		int eleccion = 0;
-		while(eleccion != 9) {
+		int eleccionOrdenacion = 0;
+		while(eleccion != 8) {
 			 eleccion = Entrada.Menu();
 			 switch(eleccion) {
 			 case 1:
@@ -39,23 +46,52 @@ public class ControladorBiblioteca {
 				 b.giveBackBook(b.buscarSocio(DNI));
 				 break;
 			 case 5:
+				 if(b.getLibros().isEmpty()) {
+					 Entrada.Mensaje("No hay libros en esta biblioteca");
+				 } else {
+					 eleccionOrdenacion = Entrada.MenuLibro();
+					 if(eleccionOrdenacion == 1) {
+						b.getLibros().sort(b.getLibros().get(0).COMPARE_BY_EJEMPLARES);
+						Entrada.Mensaje("Estos son los libros que tenemos ordenados por número de ejemplares: " + b.getLibros());
+					 } else if(eleccionOrdenacion == 2) {
+						 b.getLibros().sort(b.getLibros().get(0).COMPARE_BY_TITULO);
+						 Entrada.Mensaje("Estos son los libros que tenemos ordenados por título: " + b.getLibros());
+					 } else if(eleccionOrdenacion == 3) {
+						 b.getLibros().sort(b.getLibros().get(0).COMPARE_BY_AUTOR);
+						 Entrada.Mensaje("Estos son los libros que tenemos ordenados por autor: " + b.getLibros());
+					 } else {
+						 Entrada.Mensaje("Estos son los libros que tenemos ordenados por defecto: " + b.getLibros());
+					 }
+				 }
+				 break;
+			 case 6:
+				 if(b.getSocios().isEmpty()) {
+					 Entrada.Mensaje("No hay socios registrados");
+				 } else {
+					 
+					 eleccionOrdenacion = Entrada.MenuSocio();
+					 if(eleccionOrdenacion == 1) {
+						 b.getSocios().sort(b.getSocios().get(0).COMPARE_BY_PRESTADOS);
+						 Entrada.Mensaje("Estos son los socios que tenemos ordenados por número de libros prestados: " + b.getSocios());
+					 } else if(eleccionOrdenacion == 2) {
+						 b.getSocios().sort(b.getSocios().get(0).COMPARE_BY_NOMBRE);
+						 Entrada.Mensaje("Estos son los socios ordenados por nombre: " + b.getSocios());
+					 } else {
+						 Entrada.Mensaje("Estos son los socios registrados ordenados por defecto: " + b.getSocios());
+					 }
+			 	}
+				 break;
+			 case 7:
 				 Entrada.Mensaje(b.getLibros() + "De que libro quieres añadir ejemplares?");
 				 ISBN = Entrada.pedirString();
 				 Entrada.Mensaje("Cuantos ejemplares recibimos");
 				 b.reciveEjemplares(Entrada.pedirInt(), b.buscarLibro(ISBN));
 				 break;
-			 case 6:
-				 Entrada.Mensaje("Estos son los libros que tenemos" + b.getLibros());
-				 break;
-			 case 7:
-				 Entrada.Mensaje("Estos son los socios registrados" + b.getSocios());
-				 break;
-			 case 8:
-				 g.store(b);
+		
 			 }
 			 
 		}
-		
+		g.store(b);
 	}
 	
 

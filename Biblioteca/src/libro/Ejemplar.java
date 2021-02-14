@@ -1,10 +1,12 @@
 package libro;
 
 
+import java.io.Serializable;
+
 import entrada.Entrada;
 import socio.Socio;
 
-public class Ejemplar {
+public class Ejemplar implements Serializable {
 
 
 	private int codigo;

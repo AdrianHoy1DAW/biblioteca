@@ -3,6 +3,7 @@ package libro;
 
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -11,7 +12,7 @@ import entrada.Entrada;
 import socio.Socio;
 
 
-public class Libro implements Comparable<Libro> {
+public class Libro implements Comparable<Libro>, Serializable {
 
 
 	protected String titulo;

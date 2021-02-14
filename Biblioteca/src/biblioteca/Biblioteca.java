@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.awt.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,7 +11,7 @@ import libro.Ejemplar;
 import libro.Libro;
 import socio.Socio;
 
-public class Biblioteca {
+public class Biblioteca implements Serializable {
 
 	private ArrayList<Libro> libros;
 	private ArrayList<Socio> socios;

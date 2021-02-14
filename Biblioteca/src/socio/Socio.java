@@ -1,5 +1,6 @@
 package socio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
@@ -9,7 +10,7 @@ import entrada.Entrada;
 import libro.Ejemplar;
 
 
-public class Socio implements Comparable<Socio>{
+public class Socio implements Comparable<Socio>, Serializable{
 
 	private String nombre;
 	private String apellidos;
@@ -23,6 +24,17 @@ public class Socio implements Comparable<Socio>{
 		public int compare(Socio s0, Socio s1) {
 			
 			return s0.prestados.size() - s1.prestados.size();
+			
+		}
+		
+	};
+	
+	public static final Comparator COMPARE_BY_NOMBRE = new Comparator<Socio>() {
+		
+		@Override
+		public int compare(Socio s0, Socio s1) {
+			
+			return s0.nombre.compareTo(s1.nombre);
 			
 		}
 		
@@ -89,7 +101,7 @@ public class Socio implements Comparable<Socio>{
 
 	@Override
 	public int compareTo(Socio p) {
-		return nombre.compareTo(p.nombre);
+		return DNI.compareTo(p.DNI);
 	}
 
 	@Override

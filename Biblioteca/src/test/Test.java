@@ -23,8 +23,6 @@ public class Test {
 		Libro libro4 = new Libro("Thiago","Hoyos","2");
 		ArrayList<Libro> libros = b.getLibros();
 		
-		b.registerBook();
-		b.registerBook();
 		
 
 		
